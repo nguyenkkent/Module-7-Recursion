@@ -8,7 +8,7 @@ public class HomeworkM7Driver {
 	}
 
 	public static void arrayReverse(int[] array) {
-		// YOUR CODE HERE
+		// testing
 	}
 
 	public static int countPositives(BagInterface<Integer> bag) {
