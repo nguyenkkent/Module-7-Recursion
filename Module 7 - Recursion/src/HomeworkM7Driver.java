@@ -3,12 +3,46 @@ import java.util.*;
 public class HomeworkM7Driver {
 
 	public static boolean qNotFollowedByU(String word) {
-		// YOUR CODE HERE
-		return false; // placeholder: delete and replace when you write your own method
+		if (word.length() == 1 && Character.compare(word.toLowerCase().charAt(0), 'q')==0) { //if singleton AND is contains a 'q'
+			return true;
+		}
+		else if (word.length() < 2) // if empty string or singleton and NOT a 'q'
+			return false;
+		else
+			return qNotFollowedByUHelper(word, 0, word.length()-1); //recursion
+	}
+	
+	private static boolean qNotFollowedByUHelper(String word, int start, int end) {
+		
+		if (start==end || start>end) { //base case
+			if (Character.compare(word.toLowerCase().charAt(start), 'q')==0) { //if last character is a 'q'
+				return true;
+			}
+			else { //last character is not a 'q'
+				return false; 
+			}			
+		}
+		else if( Character.compare(word.toLowerCase().charAt(start), 'q')==0  && Character.compare(word.toLowerCase().charAt(start+1), 'u')!=0) {
+			return true;
+		}
+		else{
+			return qNotFollowedByUHelper(word, start+1, end);
+		}
 	}
 
 	public static void arrayReverse(int[] array) {
-		// testing
+		if (array.length > 1) {
+			arrayReverseHelper(array, 0, array.length-1);
+		}
+	}
+	
+	private static void arrayReverseHelper(int[] array, int start, int end) 	{
+		if (end > start){
+			int temp = array[start];
+			array[start] = array[end];
+			array[end] = temp;
+			arrayReverseHelper(array, start+1, end-1);
+		}
 	}
 
 	public static int countPositives(BagInterface<Integer> bag) {
