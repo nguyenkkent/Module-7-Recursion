@@ -46,8 +46,16 @@ public class HomeworkM7Driver {
 	}
 
 	public static int countPositives(BagInterface<Integer> bag) {
-		// YOUR EXTRA CREDIT CODE HERE
-		return 0; // placeholder: delete and replace when you write your own method
+		int count = 0;
+		if (!bag.isEmpty()) { //base case
+			Integer removedItem = bag.remove();
+			if (removedItem > 0) { 
+				count++;
+			}
+			count += countPositives(bag); //recursion
+			bag.add(removedItem); //re-fills the bag once recursion is over and before method is being cleared from stack
+		}
+		return count; 
 	}
 	
 	private static boolean allTestsPassed = true; 
